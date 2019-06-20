@@ -46,4 +46,8 @@ jobs:
           name: run lint
           command: |
             . venv/bin/activate
+<<<<<<< HEAD
             make lint
+=======
+            make lint
+>>>>>>> 1eaa6178e2e2bde9523bc438a51394cdbcf9b430
