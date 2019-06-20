@@ -85,28 +85,90 @@ To run a Kubernetes cluster locally, for testing and project purposes, you need 
 brew cask install virtualbox
 ```
 - **For Windows:**
-```
 I recommend using a [Windows host](https://www.virtualbox.org/wiki/Downloads).
-```
 2. Install minikube:
 - **For Mac:**
 ```
 brew cask install minikube
 ```
 - **For Windows:**
-```
 I recommend using the [Windows installer](https://kubernetes.io/docs/tasks/tools/install-minikube/).
-```
 
-### Running `app.py`
+## Run a Container & Make a Prediction
+In order to run a containerized application, you’ll need to build and run the docker image that you defined in the `Dockerfile`, and then you should be able to test your application, locally, by having the containerized application accept some input data and produce a prediction about housing prices. `run_docker.sh`
+
+Next, I open and completed the file, `run_docker.sh` to be able to get Docker running, locally.
+
+### Running the complete script
+To run and build a docker image, you’ll type `./run_docker.sh`. After a brief waiting period, you should see messages indicating a successful build, along with some indications that your app is being served on port 80 (also, a warning about the development server is to be expected, here).
+
+```
+Successfully built <build id>
+Successfully tagged <your tag>
+```
+This indicates a successful build and **if you keep this application running** you can make predictions!
+
+### Making predictions
+Then, to make a prediction, you have to open a **separate tab or terminal window**. In this new window, navigate to the main project directory (some computers will do this automatically) and call `./make_prediction.sh`.
+
+The main terminal should look something like this:
+![docker out main terminal](1-0-docker_out.png)
+
+The second terminal should look something like this:
+![docker out second terminal](1-1-docker_out_make_prediction.png)
+
+## Upload the Docker Image
+Now that you’ve tested your containerized image locally, you’ll want to upload your built image to docker. This will make it accessible to a Kubernets cluster.
+
+### Upload your Docker image
+To upload an image to docker, I completed the `upload_docker.sh`.
+
+Assuming you’ve already built the docker image with `./run_docker.sh`, you can now upload the image by calling the complete shell script `./upload_docker.sh`.
+
+Your terminal should look something like this:
+![upload docker terminal](2-0-upload-docker.png)
+
+If you’ve successfully implemented authentication and tagging, you should see a successful login statement and a repository name that you specified, printed in your terminal. You should also be able to see your image as a repository in your [docker hub account](https://hub.docker.com/).
+
+Your docker hub account should look something like this:
+![docker hub account](2-1-upload-docker.png)
+
+## Configure Kubernetes to Run Locally
+You should have a virtual machine like **VirtualBox** and `minikube` installed, as per the project environmet instructions. To start a local cluster, type the terminal command: `minikube start`.
+
+**After minikube starts, a cluster should be running locally.** You can check that you have one cluster running by typing `kubectl config view` where you should see at least one cluster with a `certificate-authority` and `server`.
+
+## Deploy with Kubernetes and Kubernetes Output Logs
+Now that you’ve uploaded a docker image and configured Kubernetes so that a cluster is running, you’ll be able to deploy your application on the Kubernetes cluster. This involves running your containerized application using `kubectl`, which is a command line interface for interacting with Kubernetes clusters.
+
+To deploy this application using `kubectl`, I completed the file, `run_kubernetes.sh`. 
+
+After completing the code, call the script `./run_kubernetes.sh`. This assumes you have a local cluster configured and running. This script should create a pod with a name you specify and you may get an initial output with a cluster and status.
+
+Initially, your pod may be in the process of being created, as indicated by
+```STATUS: 
+ContainerCreating
+```
+but you just have to wait a few minutes until the pod is ready, then you can run the script again. You can check on your pod’s status with a call to `kubectl get pod` and you should see the status change to **Running**. Then you can run the full `./run_kuberenets.sh` script again.
+
+## Make a prediction
+After you’ve called `run_kubernetes.sh`, and a pod is up and running, make a prediction using a separate terminal tab, and a call to `./make_prediction.sh`, as you did before.
+
+The main terminal should look something like this:
+![kubernetes out main terminal](3-0-kubernetes_out.png)
+
+The second terminal should look something like this:
+![kubernetes out second terminal](3-1-kubernetes_out_make_prediction.png)
+
+## Delete Cluster
+After you’re done deploying your containerized application and making test predictions via Kubernetes cluster, you should clean up your resources and **delete the kubernetes cluster** with a call to `minikube delete`.
+
+You can also pause your work and save the cluster state with a call to `minikube stop`.
+
+## Running `app.py`
 
 1. Standalone:  `python app.py`
 2. Run in Docker:  `./run_docker.sh`
 3. Run in Kubernetes:  `./run_kubernetes.sh`
 
-### Kubernetes Steps
-
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+##### Jalil. R. Omrani
