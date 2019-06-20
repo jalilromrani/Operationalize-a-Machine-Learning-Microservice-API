@@ -1,0 +1,12 @@
+<paste log output from Kubernetes-mediated prediction, here>
+
+(.devops) saro-MacBook-Pro:project-ml-microservice-kubernetes saro$ kubectl get pod
+NAME                           READY     STATUS    RESTARTS   AGE
+three-project-77865b98-rsfjg   1/1       Running   0          4m
+(.devops) saro-MacBook-Pro:project-ml-microservice-kubernetes saro$ ./run_kubernetes.sh 
+Error from server (AlreadyExists): deployments.extensions "three-project" already exists
+NAME                           READY     STATUS    RESTARTS   AGE
+three-project-77865b98-rsfjg   1/1       Running   0          4m
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
