@@ -112,10 +112,10 @@ This indicates a successful build and **if you keep this application running** y
 Then, to make a prediction, you have to open a **separate tab or terminal window**. In this new window, navigate to the main project directory (some computers will do this automatically) and call `./make_prediction.sh`.
 
 The main terminal should look something like this:
-![docker out main terminal](1-0-docker_out.png)
+![docker out main terminal](output_txt_files/1-0-docker_out.png)
 
 The second terminal should look something like this:
-![docker out second terminal](1-1-docker_out_make_prediction.png)
+![docker out second terminal](output_txt_files/1-1-docker_out_make_prediction.png)
 
 ## Upload the Docker Image
 Now that you’ve tested your containerized image locally, you’ll want to upload your built image to docker. This will make it accessible to a Kubernets cluster.
@@ -126,12 +126,12 @@ To upload an image to docker, I completed the `upload_docker.sh`.
 Assuming you’ve already built the docker image with `./run_docker.sh`, you can now upload the image by calling the complete shell script `./upload_docker.sh`.
 
 Your terminal should look something like this:
-![upload docker terminal](2-0-upload-docker.png)
+![upload docker terminal](output_txt_files/2-0-upload-docker.png)
 
 If you’ve successfully implemented authentication and tagging, you should see a successful login statement and a repository name that you specified, printed in your terminal. You should also be able to see your image as a repository in your [docker hub account](https://hub.docker.com/).
 
 Your docker hub account should look something like this:
-![docker hub account](2-1-upload-docker.png)
+![docker hub account](output_txt_files/2-1-upload-docker.png)
 
 ## Configure Kubernetes to Run Locally
 You should have a virtual machine like **VirtualBox** and `minikube` installed, as per the project environmet instructions. To start a local cluster, type the terminal command: `minikube start`.
@@ -155,10 +155,10 @@ but you just have to wait a few minutes until the pod is ready, then you can run
 After you’ve called `run_kubernetes.sh`, and a pod is up and running, make a prediction using a separate terminal tab, and a call to `./make_prediction.sh`, as you did before.
 
 The main terminal should look something like this:
-![kubernetes out main terminal](3-0-kubernetes_out.png)
+![kubernetes out main terminal](output_txt_files/3-0-kubernetes_out.png)
 
 The second terminal should look something like this:
-![kubernetes out second terminal](3-1-kubernetes_out_make_prediction.png)
+![kubernetes out second terminal](output_txt_files/3-1-kubernetes_out_make_prediction.png)
 
 ## Delete Cluster
 After you’re done deploying your containerized application and making test predictions via Kubernetes cluster, you should clean up your resources and **delete the kubernetes cluster** with a call to `minikube delete`.
