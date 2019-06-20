@@ -74,7 +74,7 @@ scoop install hadolint
 Your code has been rated at 10.00/10
 ```
 Your terminal should look something like this:
-![make lint](output_txt_files/0 - make lint.png)
+![make lint](output_txt_files/0-make-lint.png)
 
 ### Install Minikube
 To run a Kubernetes cluster locally, for testing and project purposes, you need the Kubernetes package, Minikube. This operates in a virtual machine and so you'll need to download two things: A virtual machine (aka a hypervisor) then minikube. Thorough installation instructions can be found [here](https://kubernetes.io/docs/tasks/tools/install-minikube/). Here is how I installed minikube:
