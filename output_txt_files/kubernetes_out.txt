@@ -1,12 +1,16 @@
 <paste log output from Kubernetes-mediated prediction, here>
 
-(.devops) saro-MacBook-Pro:project-ml-microservice-kubernetes saro$ kubectl get pod
-NAME                           READY     STATUS    RESTARTS   AGE
-three-project-77865b98-rsfjg   1/1       Running   0          4m
-(.devops) saro-MacBook-Pro:project-ml-microservice-kubernetes saro$ ./run_kubernetes.sh 
-Error from server (AlreadyExists): deployments.extensions "three-project" already exists
-NAME                           READY     STATUS    RESTARTS   AGE
-three-project-77865b98-rsfjg   1/1       Running   0          4m
+(.devops) saro-MacBook-Pro:Operationalize-a-Machine-Learning-Microservice-API saro$ ./run_kubernetes.sh 
+Error from server (AlreadyExists): deployments.extensions "udacity-project" already exists
+NAME                               READY     STATUS    RESTARTS   AGE
+udacity-project-74685b756b-b95bd   1/1       Running   0          10m
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   260  100    48  100   212   1927   8512 --:--:-- --:--:-- --:--:--  8833
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
 Forwarding from 127.0.0.1:8000 -> 80
 Forwarding from [::1]:8000 -> 80
-Handling connection for 8000
